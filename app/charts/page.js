@@ -106,6 +106,30 @@ export default function Charts() {
     }
 
     const options = {};
+    if (selectedType === "bar") {
+      const sortedData = [...dataParam].sort((a, b) => a.y - b.y);
+      // const smallestValue = sortedData[0].y;
+      const largestValue = sortedData[sortedData.length - 1].y;
+
+      let stepSize = 10;
+      if (largestValue <= 50) {
+        stepSize = 10;
+      } else if (largestValue <= 260) {
+        stepSize = 20;
+      } else if (largestValue <= 500) {
+        stepSize = 50;
+      } else {
+        stepSize = 100;
+      }
+
+      options.scales = {
+        y: {
+          ticks: {
+            stepSize,
+          },
+        },
+      };
+    }
     if (selectedType === "polarArea") {
       options.scales = {
         r: {
@@ -139,11 +163,11 @@ export default function Charts() {
   };
 
   return (
-    <div className=" lg:flex overflow-x-clip justify-between min-h-[92vh] ">
-      <div className=" lg:min-w-[45vw] px-5 flex my-5 items-center flex-col">
-        <div className="flex w-full flex-wrap justify-around">
+    <div className=" lg:flex flex-col overflow-x-clip justify-between ">
+      <div className=" w-full flex px-5 items-center flex-col">
+        <div className="flex w-full flex-wrap justify-around items-center mt-10 mb-5">
           <select
-            className="select select-secondary m-2"
+            className="select select-primary flex-1 mx-5"
             defaultValue={type}
             onChange={handleTypeChange}
           >
@@ -161,19 +185,20 @@ export default function Charts() {
           </select>
           <input
             type="file"
-            className=" file-input file-input-bordered file-input-secondary m-2"
+            className=" file-input file-input-bordered file-input-secondary flex-1 mx-5"
             accept=".csv"
             onChange={handleOnFileUpload}
           />
           <button
-            className=" btn btn-success text-success-content text-lg m-2"
+            className=" btn btn-accent text-accent-content text-lg flex-1 mx-5"
             disabled={!file}
             onClick={() => parseFile()}
           >
             Generate
           </button>
         </div>
-        <div className="w-full h-full flex items-center m-5">
+        <div className="w-full flex flex-col items-center mt-3">
+          <div className="text-5xl mb-5 font-semibold text-primary">Table</div>
           {data ? (
             <Table
               className="w-full bg-white rounded-lg"
@@ -186,20 +211,18 @@ export default function Charts() {
           ) : null}
         </div>
       </div>
-      <div className="divider lg:divider-horizontal divider-info" />
-      <div className="min-w-[50vw] flex items-center px-5 flex-col justify-center">
+      <div className="flex items-center px-5 flex-col justify-center max-h-screen my-10">
+        <div className="text-5xl mb-5 font-semibold text-secondary">Chart</div>
+        <div className="my-2 text-xl font-semibold">
+          To download this as PNG image, use right mouse click and click on{" "}
+          <span className="text-success">Save Image As.. </span>
+        </div>
         <canvas
-          width={3840}
-          height={2160}
           className={`${
             chart ? "bg-white" : "bg-base"
           } p-5 h-[100vh] w-[100vw]`}
           id="my-canvas"
         />
-        <div className="my-2 text-xl font-semibold">
-          To download this as PNG image, use right mouse click and click on{" "}
-          <span className="text-success">Save Image As.. </span>
-        </div>
       </div>
     </div>
   );
