@@ -18,4 +18,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Screenshots
 
-![screenshot](public/opnchart-ss.png)
+![screenshot1](public/opnchart-ss-1.png)
+![screenshot2](public/opnchart-ss-2.png)
