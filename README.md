@@ -1,6 +1,8 @@
 # OpnChart
 
-Open-source chart generator. Upload CSV or Excel files and instantly create professional charts — bar, line, pie, doughnut, bubble, scatter, radar, and polar area.
+Open-source chart generator. Upload CSV or Excel files and instantly create professional charts — bar, line, pie, doughnut, bubble, scatter, radar, and polar area. Your data never leaves your browser.
+
+**Live:** [opnchart.abhinavankur.com](https://opnchart.abhinavankur.com)
 
 ![Landing Page](public/opnchart-ss-1.png)
 ![Charts Page](public/opnchart-ss-2.png)
@@ -19,7 +21,7 @@ Open-source chart generator. Upload CSV or Excel files and instantly create prof
 ## Quick Start
 
 ```bash
-git clone https://github.com/your-username/opnchart.git
+git clone https://github.com/abhinavankur3/opnchart.git
 cd opnchart
 npm install
 npm run dev
@@ -32,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ### Using Docker Compose (recommended)
 
 ```bash
-git clone https://github.com/your-username/opnchart.git
+git clone https://github.com/abhinavankur3/opnchart.git
 cd opnchart
 docker compose up -d
 ```
