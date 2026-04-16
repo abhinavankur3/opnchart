@@ -1,0 +1,9 @@
+services:
+  opnchart:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_WATERMARK: "true"
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
